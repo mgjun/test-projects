@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+    </style>
+</head>
+<body>
+<div>
+    <p>要使用的图片：</p>
+
+    <img src="../images/pig.jpg" alt="tulip" id="tulip" style="margin-left:0;" />
+
+    <p>Canvas:</p>
+
+    <canvas id="myCanvas" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+
+    <script>
+        var c=document.getElementById("myCanvas");
+        var img=document.getElementById("tulip");
+        var ctx=c.getContext("2d");
+        document.getElementById("tulip").onload=function(){
+            ctx.drawImage(img,0,0,300,150);
+        };
+        if(document.addEventListener){
+            document.addEventListener('DOMMouseScroll',scrollFunc,false);
+        }//W3C
+        window.onmousewheel=document.onmousewheel=scrollFunc;
+        
+        function scrollFunc(e) {
+            var direct=0;
+            e=e || window.event;
+            var swidth,sheight;
+            if(e.wheelDelta){//IE/Opera/Chrome
+                swidth+=e.wheelDelta;
+                sheight+=e.wheelDelta;
+            }else if(e.detail){//Firefox
+                swidth+=e.detail;
+                sheight+=e.detail;
+            }
+            ctx.drawImage(img,0,0,swidth,sheight,0,0,300,150);
+        }
+    </script>
+</div>
+</body>
+</html>
